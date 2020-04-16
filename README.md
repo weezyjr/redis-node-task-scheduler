@@ -26,6 +26,8 @@ It is a shared list that you can push or pop from anyside (left or right)
 
 [blpop](https://redis.io/commands/blpop) (blocking left pop) is to block the promise while the queue is empty, i.e. keep listening until an element is pushed, otherwise the first element of the queue would pop up and the promise would resolve.
 
+---
+
 ## Redis Manger Class
 
 Since the redis API does not provide asynchronous functions, I built a well defined abstract class that will provide promisified version of the API functions using the built in node `promisify` utility .
@@ -35,7 +37,7 @@ Currently It contains promisified version of `blpop`, `rpush` redis functions.
 `rpush` promisified e.g.
 ```typescript
 const producer = promisify(RedisManger.redisClient.rpush).bind(
-		RedisManger.redisClient
+	RedisManger.redisClient
 );
 ```
 
@@ -45,17 +47,17 @@ The producer uses redis `RPUSH` techenique to add a task to our queue
 
 ```typescript
 try {
-		// get the task from the body
-		const task = JSON.stringify(req.body.task);
+	// get the task from the body
+	const task = JSON.stringify(req.body.task);
 
-		// create a queue if does not exist and push the task to its end
-		await RedisManger.producer(process.env.QUEUE_NAME, task);
+	// create a queue if does not exist and push the task to its end
+	await RedisManger.producer(process.env.QUEUE_NAME, task);
 
-		// notify that the task is produced
-		console.info(`${task} is produced successfully`);
-	} catch (err) {
-		console.error(err);
-	}
+	// notify that the task is produced
+	console.info(`${task} is produced successfully`);
+} catch (err) {
+	console.error(err);
+}
 ```
 
 ## Consumer Service

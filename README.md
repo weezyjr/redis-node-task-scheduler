@@ -68,7 +68,7 @@ The consumer uses the `BLPOP` technique recursively, as the `BLOP` promise resol
 
 ```typescript
 const consumeTask = async () => {
-  let task;
+	let task;
 	try {
 		// get the consumed task from the selected queue
 		// the 0 param means never timeout

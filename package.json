@@ -17,9 +17,9 @@
     "url": "https://github.com/weezyjr/redis-node-task-scheduler"
   },
   "dependencies": {
-    "body-parser": "^1.19.0",
+    "body-parser": "^1.20.1",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "redis": "^3.0.2"
   },
   "devDependencies": {
